@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfigurátor – Tvoje Hnízdo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; }
+    main { flex: 2; padding: 2rem; }
+    aside { flex: 1; background: #f3f3f3; padding: 2rem; border-left: 2px solid #ddd; }
+    label { display: block; margin: 1rem 0; }
+    h1 { margin-top: 0; }
+    .rekapitulace h2 { margin-top: 0; }
+    .rekapitulace div { margin-bottom: .8rem; font-weight: bold; }
+    select, button { padding: 0.5rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Konfigurátor – Tvoje Hnízdo</h1>
+
+    <label>Tvar domu:
+      <select id="tvar">
+        <option>Obdélník</option>
+        <option>L</option>
+        <option>T</option>
+        <option>U</option>
+      </select>
+    </label>
+
+    <label>Typ střechy:
+      <select id="strecha">
+        <option>Sedlová</option>
+        <option>Pultová</option>
+        <option>Plochá</option>
+      </select>
+    </label>
+
+    <label>Fasáda:
+      <select id="fasada">
+        <option>Dřevěná</option>
+        <option>Omítaná</option>
+        <option>Zelená</option>
+      </select>
+    </label>
+
+    <label>Základy:
+      <select id="zaklady">
+        <option>Základová deska</option>
+        <option>Na zemních vrutech</option>
+        <option>Betonové patky</option>
+      </select>
+    </label>
+  </main>
+
+  <aside class="rekapitulace">
+    <h2>Rekapitulace výběru</h2>
+    <div id="rekap_tvar">Tvar: -</div>
+    <div id="rekap_strecha">Střecha: -</div>
+    <div id="rekap_fasada">Fasáda: -</div>
+    <div id="rekap_zaklady">Základy: -</div>
+  </aside>
+
+  <script>
+    const rekap = {
+      tvar: document.getElementById('rekap_tvar'),
+      strecha: document.getElementById('rekap_strecha'),
+      fasada: document.getElementById('rekap_fasada'),
+      zaklady: document.getElementById('rekap_zaklady')
+    };
+
+    function updateRekap() {
+      rekap.tvar.textContent = 'Tvar: ' + document.getElementById('tvar').value;
+      rekap.strecha.textContent = 'Střecha: ' + document.getElementById('strecha').value;
+      rekap.fasada.textContent = 'Fasáda: ' + document.getElementById('fasada').value;
+      rekap.zaklady.textContent = 'Základy: ' + document.getElementById('zaklady').value;
+    }
+
+    ['tvar', 'strecha', 'fasada', 'zaklady'].forEach(id => {
+      document.getElementById(id).addEventListener('change', updateRekap);
+    });
+
+    updateRekap();
+  </script>
+</body>
+</html>
